@@ -25,17 +25,19 @@
   </div>
 </div>
 
-<h2>Reviews</h2>
-<% if @cocktail.reviews.empty? %>
-  <div class="review">
-    <p>This cocktail does not have any reviews yet.</p>
-  </div>
-<% else %>
-  <% @cocktail.reviews.each do |review| %>
+<div class="reviews-container">
+  <h2>Reviews</h2>
+  <% if @cocktail.reviews.empty? %>
     <div class="review">
-      <p><%= review.created_at.strftime("%B %d, %Y") %></p>
-      <p><%= '⭐️' * review.stars%> <em><%= review.description %></em></p>
+      <p>This cocktail does not have any reviews yet.</p>
     </div>
+  <% else %>
+    <% @cocktail.reviews.each do |review| %>
+      <div class="review">
+        <p><%= review.created_at.strftime("%B %d, %Y") %></p>
+        <p><%= '⭐️' * review.stars%> <em><%= review.description %></em></p>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
-<%= link_to "Leave review", new_cocktail_review_path(@cocktail), class: "btn btn-primary" %>
+  <%= link_to "Leave review", new_cocktail_review_path(@cocktail), class: "btn btn-primary" %>
+</div>
