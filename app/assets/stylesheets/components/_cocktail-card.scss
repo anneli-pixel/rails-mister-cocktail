@@ -1,0 +1,16 @@
+.cocktail-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.cocktail-card img {
+/*  margin-left: 5px; */
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 100%;
+}
+
+.cocktail-card .list-group {
+  width: 48%;
+}
