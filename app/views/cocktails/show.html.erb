@@ -1,6 +1,11 @@
 <div class="header">
   <h1><%= @cocktail.name %></h1>
   <p>Ingredients</p>
+  <div>
+    <%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %>
+    <%= link_to "Back", cocktails_path, class: "btn btn-secondary" %>
+    <%= link_to "Delete cocktail", cocktail_path(@cocktail), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure you want to delete this cocktail?" } %>
+  </div>
 </div>
 
 <div class="d-flex w-100">
@@ -15,15 +20,16 @@
         </li>
       <% end %>
   </ul>
-
   <div>
     <%= cl_image_tag @cocktail.photo.key, width: 500, height: 309, crop: :fill, class: "img-cocktail" %>
   </div>
 </div>
 
 
-<div style="margin-top: 16px">
-  <%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %>
-  <%= link_to "Back", cocktails_path, class: "btn btn-secondary" %>
-  <%= link_to "Delete cocktail", cocktail_path(@cocktail), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure you want to delete this cocktail?" } %>
-</div>
+<% @cocktail.reviews.each do |review| %>
+  <div>
+    <%= '⭐️' * review.stars%>
+    <%= review.created_at %>
+    <%= review.description %>
+  </div>
+<% end %>
